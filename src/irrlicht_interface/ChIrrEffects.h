@@ -1570,7 +1570,7 @@ AmbientColour(0x0), use32BitDepth(use32BitDepthBuffers), useVSM(useVSMShadows)
 		DepthT = gpu->addHighLevelShaderMaterial(
 			sPP.ppShader(SHADOW_PASS_1V[shaderExt]).c_str(), "vertexMain", video::EVST_VS_2_0,
 			sPP.ppShader(SHADOW_PASS_1PT[shaderExt]).c_str(), "pixelMain", video::EPST_PS_2_0,
-			depthMC, video::EMT_TRANSPARENT_ALPHA_ChANNEL_REF);
+			depthMC, video::EMT_TRANSPARENT_ALPHA_CHANNEL_REF);
 
 		WhiteWash = gpu->addHighLevelShaderMaterial(
 			sPP.ppShader(SHADOW_PASS_1V[shaderExt]).c_str(), "vertexMain", video::EVST_VS_2_0,
@@ -1580,17 +1580,17 @@ AmbientColour(0x0), use32BitDepth(use32BitDepthBuffers), useVSM(useVSMShadows)
 		WhiteWashTRef = gpu->addHighLevelShaderMaterial(
 			sPP.ppShader(SHADOW_PASS_1V[shaderExt]).c_str(), "vertexMain", video::EVST_VS_2_0,
 			sPP.ppShader(WHITE_WASH_P[shaderExt]).c_str(), "pixelMain", video::EPST_PS_2_0,
-			depthMC, video::EMT_TRANSPARENT_ALPHA_ChANNEL_REF);
+			depthMC, video::EMT_TRANSPARENT_ALPHA_CHANNEL_REF);
 
 		WhiteWashTAdd = gpu->addHighLevelShaderMaterial(
 			sPP.ppShader(SHADOW_PASS_1V[shaderExt]).c_str(), "vertexMain", video::EVST_VS_2_0,
 			sPP.ppShader(WHITE_WASH_P_ADD[shaderExt]).c_str(), "pixelMain", video::EPST_PS_2_0,
-			depthMC, video::EMT_TRANSPARENT_ALPHA_ChANNEL);
+			depthMC, video::EMT_TRANSPARENT_ALPHA_CHANNEL);
 
 		WhiteWashTAlpha = gpu->addHighLevelShaderMaterial(
 			sPP.ppShader(SHADOW_PASS_1V[shaderExt]).c_str(), "vertexMain", video::EVST_VS_2_0,
 			sPP.ppShader(WHITE_WASH_P[shaderExt]).c_str(), "pixelMain", video::EPST_PS_2_0,
-			depthMC, video::EMT_TRANSPARENT_ALPHA_ChANNEL);
+			depthMC, video::EMT_TRANSPARENT_ALPHA_CHANNEL);
 
 		if(useRoundSpotLights)
 			sPP.addShaderDefine("ROUND_SPOTLIGHTS");
@@ -1652,9 +1652,9 @@ AmbientColour(0x0), use32BitDepth(use32BitDepthBuffers), useVSM(useVSMShadows)
 		Depth = EMT_SOLID;
 		DepthT = EMT_SOLID;
 		WhiteWash = EMT_SOLID;
-		WhiteWashTRef = EMT_TRANSPARENT_ALPHA_ChANNEL_REF;
+		WhiteWashTRef = EMT_TRANSPARENT_ALPHA_CHANNEL_REF;
 		WhiteWashTAdd = EMT_TRANSPARENT_ADD_COLOR;
-		WhiteWashTAlpha = EMT_TRANSPARENT_ALPHA_ChANNEL;
+		WhiteWashTAlpha = EMT_TRANSPARENT_ALPHA_CHANNEL;
 		Simple = EMT_SOLID;
 
 		for(u32 i = 0;i < EFT_COUNT;++i)
@@ -1795,7 +1795,7 @@ void EffectHandler::update(irr::video::ITexture* outputTarget)
 				{
 					BufferMaterialList.push_back(ShadowNodeArray[i].node->getMaterial(m).MaterialType);
 					ShadowNodeArray[i].node->getMaterial(m).MaterialType = (E_MATERIAL_TYPE)
-						(BufferMaterialList[m] == video::EMT_TRANSPARENT_ALPHA_ChANNEL_REF ? DepthT : Depth);
+						(BufferMaterialList[m] == video::EMT_TRANSPARENT_ALPHA_CHANNEL_REF ? DepthT : Depth);
 				}
 
 				ShadowNodeArray[i].node->OnAnimate(device->getTimer()->getTime());
@@ -1887,13 +1887,13 @@ void EffectHandler::update(irr::video::ITexture* outputTarget)
 			
 				switch(BufferMaterialList[m])
 				{
-					case EMT_TRANSPARENT_ALPHA_ChANNEL_REF:
+					case EMT_TRANSPARENT_ALPHA_CHANNEL_REF:
 						ShadowNodeArray[i].node->getMaterial(m).MaterialType = (E_MATERIAL_TYPE)WhiteWashTRef;
 						break;
 					case EMT_TRANSPARENT_ADD_COLOR:
 						ShadowNodeArray[i].node->getMaterial(m).MaterialType = (E_MATERIAL_TYPE)WhiteWashTAdd;
 						break;
-					case EMT_TRANSPARENT_ALPHA_ChANNEL:
+					case EMT_TRANSPARENT_ALPHA_CHANNEL:
 						ShadowNodeArray[i].node->getMaterial(m).MaterialType = (E_MATERIAL_TYPE)WhiteWashTAlpha;
 						break;
 					default:

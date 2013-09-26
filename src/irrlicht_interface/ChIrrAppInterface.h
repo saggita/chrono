@@ -165,7 +165,7 @@ public:
 
 				switch(event.GUIEvent.EventType)
 				{
-				case gui::EGET_SCROLL_BAR_ChANGED:
+				case gui::EGET_SCROLL_BAR_CHANGED:
 						if (id == 9904) 
 						{
 							this->app->GetSystem()->SetIterLCPmaxItersSpeed(( (gui::IGUIScrollBar*)event.GUIEvent.Caller)->getPos() );
@@ -197,7 +197,7 @@ public:
 							break;
 						}
 
-				case gui::EGET_COMBO_BOX_ChANGED:
+				case gui::EGET_COMBO_BOX_CHANGED:
 						if (id == 9907)
 						{		
 							int sel = ( (gui::IGUIComboBox*)event.GUIEvent.Caller)->getSelected();
@@ -223,7 +223,7 @@ public:
 							}
 							break;
 						}
-				case gui::EGET_ChECKBOX_ChANGED:
+				case gui::EGET_CHECKBOX_CHANGED:
 						if (id == 9906)
 						{	
 							this->app->GetSystem()->SetIterLCPwarmStarting( ((gui::IGUICheckBox*)event.GUIEvent.Caller)->isChecked() );
